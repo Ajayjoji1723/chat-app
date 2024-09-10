@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie'
 import Loader from "./Spinner";
+import { BASE_URL } from "../services";
 
 const Login = ({ signUp  }) => {
   const [name, setName] = useState("");
@@ -33,7 +34,7 @@ const Login = ({ signUp  }) => {
       const body = { username: name, password: password };
       try {
         axios
-          .post("http://localhost:4444/auth/login", body)
+          .post(`${BASE_URL}/auth/login`, body)
           .then((res) => {
           
             toast.success("Login Successfull! Enjoy Chatting", {

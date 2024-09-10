@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import MenuDesc from "./MenuDesc";
 import ChatBox from "./ChatBox";
 import Cookies from 'js-cookie'
+import { BASE_URL } from "../../services";
 
 const Dashboard = () => {
   const [isSelected, setIsSelected] = useState("");
@@ -34,7 +35,7 @@ const Dashboard = () => {
 
   const fetchUserDetails=async()=>{
     try{
-      axios.get('http://localhost:4444/auth/profile', {
+      axios.get(`${BASE_URL}/auth/profile`, {
         headers:{
           'Authorization':`Bearer ${Cookies.get('jwt_token')}`
         }
@@ -48,7 +49,7 @@ const Dashboard = () => {
 
   const fetchGroups = async()=>{
     try{
-      axios.get('http://localhost:4444/groups/my-groups', {
+      axios.get(`${BASE_URL}/groups/my-groups`, {
         headers:{
           'Authorization':`Bearer ${Cookies.get('jwt_token')}`
         }
@@ -62,7 +63,7 @@ const Dashboard = () => {
 
   const fetchAllUsers=()=>{
     try{
-      axios.get('http://localhost:4444/users/all-users', {
+      axios.get(`${BASE_URL}/users/all-users`, {
         headers:{
           'Authorization':`Bearer ${Cookies.get('jwt_token')}`
         }

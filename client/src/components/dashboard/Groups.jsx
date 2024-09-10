@@ -3,6 +3,7 @@ import axios from "axios";
 import Modal from "react-modal";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../services";
 
 const Groups = ({
   isSelected,
@@ -32,7 +33,7 @@ const Groups = ({
       if (newGroupName) {
         const token = Cookies.get("jwt_token");
         await axios.post(
-          "http://localhost:4444/groups/create-group",
+          `${BASE_URL}/groups/create-group`,
           { name: newGroupName },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -50,7 +51,7 @@ const Groups = ({
   const deleteGroup = async (groupId) => {
     try {
       const token = Cookies.get("jwt_token");
-      await axios.delete(`http://localhost:4444/groups/${groupId}`, {
+      await axios.delete(`${BASE_URL}/groups/${groupId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success("Group Deleted");
@@ -65,7 +66,7 @@ const Groups = ({
     try {
       const token = Cookies.get("jwt_token");
       await axios.post(
-        `http://localhost:4444/groups/${groupSelected}/members`,
+        `${BASE_URL}/groups/${groupSelected}/members`,
         { userId: selectedUserId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

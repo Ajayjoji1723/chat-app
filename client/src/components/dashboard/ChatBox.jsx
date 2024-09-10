@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from 'js-cookie';
 import Message from './Message';
+import { BASE_URL } from "../../services";
 
 const ChatBox = ({
   chatBox,
@@ -24,7 +25,7 @@ const ChatBox = ({
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get(`http://localhost:4444/messages/group/${groupId}/messages`, {
+      const response = await axios.get(`${BASE_URL}/messages/group/${groupId}/messages`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -63,7 +64,7 @@ const ChatBox = ({
 
   const handleLike = async (messageId) => {
     try {
-      await axios.post(`http://localhost:4444/messages/${messageId}/like`, {}, {
+      await axios.post(`${BASE_URL}/messages/${messageId}/like`, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,7 +80,7 @@ const ChatBox = ({
 
     try {
       const response = await axios.post(
-        `http://localhost:4444/messages/send`,
+        `${BASE_URL}/messages/send`,
         { 
           groupId: groupId,
           content: newMessage

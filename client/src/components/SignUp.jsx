@@ -4,6 +4,7 @@ import axios from "axios";
 import Input from "./Input";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Spinner";
+import { BASE_URL } from "../services";
 
 const SignUp = ({ login, user }) => {
   const [role, setRole] = useState("admin");
@@ -30,7 +31,7 @@ const SignUp = ({ login, user }) => {
       const body = { username: name, password: password, role: role };
       try {
         axios
-          .post("http://localhost:4444/auth/register", body)
+          .post(`${BASE_URL}/auth/register`, body)
           .then((res) => {
             toast.success(res.data, {
               positon: "top-right",
